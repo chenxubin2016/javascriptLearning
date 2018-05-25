@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            var n = window.prompt('input');
+            console.log(n)
+            var c = isEmpty(n);
+            document.write(c);
+        }
+        // 字符串非空判断
+        function isEmpty(str) {
+            if (str != null && str != undefined && str != "") {
+                return false;
+            } else if (str.replace(/(^s*)|(s*$)/g, "").length != 0) {
+                return false;
+            } else {
+                return true;
+            };
+        }
+
+    </script>
+</body>
+
+</html>
