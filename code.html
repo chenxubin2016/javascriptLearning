@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body{
+        body {
             padding: 50px 100px;
         }
-        textarea{
+
+        textarea {
             width: 100%;
             height: 200px;
             margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
     <textarea id="atext"></textarea>
     <textarea id="btext"></textarea>
@@ -30,34 +33,34 @@
     </div>
     <button id="subd">转换</button>
     <script>
-        window.onload=function(){
+        window.onload = function () {
             a();
             b();
         };
-        function a(){
-            var a=document.getElementById("atext");
-            var b=document.getElementById("btext");
-            var c=document.getElementById("ctext");
-            var sub=document.getElementById("sub");
-            sub.onclick=function(){
-                var aJson=JSON.parse(a.value);
-                var bJson=JSON.parse(b.value);
-                c.value=JSON.stringify(Object.assign({},bJson,aJson)).replace(/[,,]/g,",\r\n");
-            }; 
+        function a() {
+            var a = document.getElementById("atext");
+            var b = document.getElementById("btext");
+            var c = document.getElementById("ctext");
+            var sub = document.getElementById("sub");
+            sub.onclick = function () {
+                var aJson = JSON.parse(a.value);
+                var bJson = JSON.parse(b.value);
+                c.value = JSON.stringify(Object.assign({}, bJson, aJson)).replace(/[,,]/g, ",\r\n");
+            };
         }
-        function b(){
-            var d=document.getElementById("dtext");
-            document.getElementById("subd").onclick=function(){
-                var arr=d.value.split(",");
-                var obj={};
-                for(var i=0; i<arr.length; i++){
-                    var key=arr[i].split('-----')[1];
-                    obj[key]=arr[i].split('-----')[2];
+        function b() {
+            var d = document.getElementById("dtext");
+            document.getElementById("subd").onclick = function () {
+                var arr = d.value.split(",");
+                var obj = {};
+                for (var i = 0; i < arr.length; i++) {
+                    var key = arr[i].split('-----')[1];
+                    obj[key] = arr[i].split('-----')[2];
                 }
-                d.value=JSON.stringify(obj).replace(/[,,]/g,",\r\n");
+                d.value = JSON.stringify(obj).replace(/[,,]/g, ",\r\n");
             }
         }
     </script>
 </body>
-</html>
 
+</html>

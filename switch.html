@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            /* var n = window.prompt("input");
+            switch (n) {
+                case "5":
+                    document.write('我输入的是：老婆我爱你！');
+                    break;
+                default:
+                    document.write('我输入的是：' + n);
+                    break;
+            } */
+            // workday();
+            /* for (var i = 0; i < 100; i++) {
+                if (i % 7 == 0 || i % 10 == 7) {
+                    continue;
+                }
+                console.log(i);
+            } */
+
+            /* var count = 0;
+            for (var i = 1; i < 100; i++) {
+                count += i;
+                console.log(i);
+                if (count > 100) {
+                    break;
+                }
+            } */
+        }
+        function workday() {
+            var n = parseInt(window.prompt("input")) % 7;
+            switch (n) {
+                case 6:
+                    document.write('今天是周六');
+                    break;
+                case 7:
+                    document.write('今天是周日');
+                    break;
+                default:
+                    document.write('今天是工作日');
+                    break;
+
+            }
+        }
+    </script>
+</body>
+
+</html>
