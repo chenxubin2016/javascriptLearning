@@ -12,9 +12,61 @@
 
 </body>
 <script>
-
-    function Person(name,age,sex){
+    /* Person.prototype = {
+        lastName: 'chen',
+        year: 2018,
+        month: 05
     }
+    function Person(name, age, sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+    var person = new Person('chenguxbin', '32', 'man');
+
+
+    var obj = Object.create(Person.prototype); */
+
+
+    /* var count = 0;
+    for (var i = 1; i < 1000; i++) {
+        if (i % 3 == 0 && i % 5 == 0 && i % 7 == 0) {
+            count++;
+            document.write(i + ' ');
+            if (count % 6 == 0) {
+                document.write('<br>');
+            }
+        }
+    } */
+
+    /* 
+    function creatElement() {
+        
+    }
+    console.log(creatElement.name)
+    console.log(creatElement.prototype)
+    console.log(creatElement.__proto__) */
+
+   /* function Person(name) {
+       this.name=name;
+   }
+   Person.prototype.getName=function(){
+       return this.name;
+   }
+
+   function Author(name,books) {
+       Person.call(this,name);
+       this.books=books;
+   }
+
+   extend(Author,Person);
+
+   Author.prototype.getBooks=function(){
+       return this.books;
+   } */
+
+   var url='http://flyer.travelsky.com:10280/HotelTRPH5/template/hotelTicket.html';
+   console.log(url.split("?")[0]+url.split("?")[1])
 </script>
 
 </html>
