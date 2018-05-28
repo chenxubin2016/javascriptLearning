@@ -9,6 +9,12 @@
 </head>
 
 <body>
+    <button>点击我看看i是几？</button>
+    <button>点击我看看i是几？</button>
+    <button>点击我看看i是几？</button>
+    <button>点击我看看i是几？</button>
+    <button>点击我看看i是几？</button>
+    <button>点击我看看i是几？</button>
     <script>
         /* function test(){
             var count=100;
@@ -41,7 +47,7 @@
 
         console.log(test); */
 
-        function test() {
+        /* function test() {
             var arr = [];
             for (var i = 0; i < 10; i++) {
                 (function (j) {
@@ -56,7 +62,49 @@
         var demo = test();
         for (var j = 0; j < 10; j++) {
             demo[j]();
+        } */
+
+        //立即执行函数，作用域的应用
+        /* function test() {
+            var el = document.getElementsByTagName('button');
+            for (var i = 0; i < el.length; i++) {
+                (function (j) {
+                    el[j].onclick = function () {
+                        console.log(j);
+                    }
+                }(i));
+            }
         }
+        test(); */
+
+        // 中英文字节长度计算
+        /* function retByteslen(str) {
+            var count = 0;
+            for (var i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) < =255) {
+                    count++;
+                } else if (str.charCodeAt(i) >255) {
+                    count += 2;
+                }
+            }
+            console.log(count);
+        } */
+        //中英文字节长度计算简化版
+        /* function retByteslen(str) {
+            var count,
+                _str=str.toString(),
+                count = len = _str.length;
+            for (var i = 0; i < len; i++) {
+                if (_str.charCodeAt(i) > 255) {
+                    count++;
+                }
+            }
+            console.log(count);
+        } */
+
+        //逗号运输符 执行方式
+        /* 注意事项，必须带括号，返回逗号以后的执行结果 */
+        var a=(1+1,2*2);
     </script>
 </body>
 
