@@ -25,6 +25,7 @@ Array.prototype.max = function () {
 /**
  * 求数组的最小值
  */
+
 Array.prototype.max = function () {
     var min = this[0];
     for (var i = 0; i < this.length; i++) {

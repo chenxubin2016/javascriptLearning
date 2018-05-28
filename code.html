@@ -58,7 +58,17 @@
                     obj[key] = arr[i].split('-----')[2];
                 }
                 d.value = JSON.stringify(obj).replace(/[,,]/g, ",\r\n");
+                var Obj = objKeySort(JSON.parse(d.value));
+                d.value = JSON.stringify(Obj);
             }
+        }
+        function objKeySort(obj) {
+            var newkey = Object.keys(obj).sort();
+            var newObj = {};
+            for (var i = 0; i < newkey.length; i++) {
+                newObj[newkey[i]] = obj[newkey[i]];
+            }
+            return newObj;
         }
     </script>
 </body>
