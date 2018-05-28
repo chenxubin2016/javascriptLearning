@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body{
+        body {
             padding: 50px 100px;
         }
-        textarea{
+
+        textarea {
             width: 100%;
             height: 200px;
             margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
     <textarea id="atext"></textarea>
     <textarea id="btext"></textarea>
@@ -30,34 +33,45 @@
     </div>
     <button id="subd">转换</button>
     <script>
-        window.onload=function(){
+        window.onload = function () {
             a();
             b();
         };
-        function a(){
-            var a=document.getElementById("atext");
-            var b=document.getElementById("btext");
-            var c=document.getElementById("ctext");
-            var sub=document.getElementById("sub");
-            sub.onclick=function(){
-                var aJson=JSON.parse(a.value);
-                var bJson=JSON.parse(b.value);
-                c.value=JSON.stringify(Object.assign({},bJson,aJson)).replace(/[,,]/g,",\r\n");
-            }; 
+        function a() {
+            var a = document.getElementById("atext");
+            var b = document.getElementById("btext");
+            var c = document.getElementById("ctext");
+            var sub = document.getElementById("sub");
+            sub.onclick = function () {
+                var aJson = JSON.parse(a.value);
+                var bJson = JSON.parse(b.value);
+                c.value = JSON.stringify(Object.assign({}, bJson, aJson)).replace(/[,,]/g, ",\r\n");
+            };
         }
-        function b(){
-            var d=document.getElementById("dtext");
-            document.getElementById("subd").onclick=function(){
-                var arr=d.value.split(",");
-                var obj={};
-                for(var i=0; i<arr.length; i++){
-                    var key=arr[i].split('-----')[1];
-                    obj[key]=arr[i].split('-----')[2];
+        function b() {
+            var d = document.getElementById("dtext");
+            document.getElementById("subd").onclick = function () {
+                var arr = d.value.split(",");
+                var obj = {};
+                for (var i = 0; i < arr.length; i++) {
+                    var key = arr[i].split('-----')[1];
+                    obj[key] = arr[i].split('-----')[2];
                 }
-                d.value=JSON.stringify(obj).replace(/[,,]/g,",\r\n");
+                d.value = JSON.stringify(obj).replace(/[,,]/g, ",\r\n");
+                var Obj = objKeySort(JSON.parse(d.value));
+                d.value=JSON.stringify(Obj);
             }
+        }
+        function objKeySort(obj) {//排序的函数
+            var newkey = Object.keys(obj).sort();
+            　　//先用Object内置类的keys方法获取要排序对象的属性名，再利用Array原型上的sort方法对获取的属性名进行排序，newkey是一个数组
+            var newObj = {};//创建一个新的对象，用于存放排好序的键值对
+            for (var i = 0; i < newkey.length; i++) {//遍历newkey数组
+                newObj[newkey[i]] = obj[newkey[i]];//向新创建的对象中按照排好的顺序依次增加键值对
+            }
+            return newObj;//返回排好序的新对象
         }
     </script>
 </body>
-</html>
 
+</html>
