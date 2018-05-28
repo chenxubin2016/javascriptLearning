@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* var name1 = 'chenxubin';
+        var myInit = (function () {
+            var name = '222'
+            function print() {
+                console.log(name1)
+            };
+            return function () {
+                print();
+            }
+        }());
+        myInit(); */
+        /* var obj = {
+            name: '55',
+            sex: '666',
+            __proto__:{
+                lastName:'888'
+            }
+        }
+        Object.prototype.jj=89999;
+        for (var i in obj) {
+            //过滤原型链
+            if (obj.hasOwnProperty(i)) {
+                console.log(obj[i])
+            }
+        } */
+
+        // instanceof
+        // A instanceof B 判断A是不是B构造出来的对象
+        // 原理：看A对象的原型链上是否有B 的原型链
+        // 区别对象，数组的三种方法
+        /* var arr={}||[];
+        if(arr instanceof Array){
+            console.log("Array");
+        }else{
+            console.log("Object");
+        }
+
+        // constructor
+        console.log([].constructor)
+        console.log({}.constructor)
+
+        //第三种
+        console.log(Object.prototype.toString.call([]));
+        console.log(Object.prototype.toString.call({})); */
+
+        // 克隆
+        var obj={
+            name:'666',
+            sex:'999'
+        }
+        var t={};
+        var conle=function(Target,Origin){
+            var obj={};
+            for(var i in Origin){
+                if(Origin.hasOwnProperty(i)){
+                    obj[i]=Origin[i];
+                }
+            };
+            Target=obj;
+        }
+        conle(t,obj);
+        console.log(t);
+    </script>
+</body>
+
+</html>
