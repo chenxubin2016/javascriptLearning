@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Father.prototype.lastName='deng';
+        function Father() {
+            
+        }
+        function Son() {
+            
+        }
+        Son.prototype=Father.prototype;
+
+        var son=new Son(); */
+
+        /* Father.prototype.lastName='deng';
+        function Father() {};
+        function Son() {};
+        function inherit(Target,Origin){
+            function F() {};
+            F.prototype=Origin.prototype;
+            Target.prototype=new F();
+            Target.prototype.constuctor=Target;
+            Target.prototype.uber=Origin.prototype;
+        };
+        inherit(Son,Father);
+        var son=new Son(); */
+
+        //YUI3
+        var inherit = (function () {
+            var F = function () { };
+            return function (Target, Origin) {
+                F.prototype=Origin.prototype;
+                Target.prototype=new F();
+                Target.prototype.constuctor=Target;
+                Target.prototype.uber=Origin.prototype;
+            };
+        }());
+    </script>
+</body>
+
+</html>
