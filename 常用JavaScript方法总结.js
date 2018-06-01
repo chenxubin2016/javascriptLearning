@@ -34,3 +34,17 @@ Array.prototype.max = function () {
         }
     }
 }
+
+/**
+ * @param {any} num 为任意值
+ * @returns 布尔值
+ */
+function isNaN(num) {
+    var ret=Number(num);
+    ret+= '';
+    if (ret == 'NaN') {
+        return true;
+    } else {
+        return false;
+    }
+}

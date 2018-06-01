@@ -35,7 +35,8 @@
     <script>
         window.onload = function () {
             a();
-            b();
+            // b();
+            strToJson();
         };
         function a() {
             var a = document.getElementById("atext");
@@ -48,6 +49,7 @@
                 c.value = JSON.stringify(Object.assign({}, bJson, aJson)).replace(/[,,]/g, ",\r\n");
             };
         }
+        // 字符串拼接数组
         function b() {
             var d = document.getElementById("dtext");
             document.getElementById("subd").onclick = function () {
@@ -69,6 +71,21 @@
                 newObj[newkey[i]] = obj[newkey[i]];
             }
             return newObj;
+        }
+
+        function strToJson() {
+            var d = document.getElementById("dtext");
+            document.getElementById("subd").onclick = function () {
+                var arr = d.value.split(",");
+                var obj = {};
+                for (var i = 0; i < arr.length; i++) {
+                    var key = arr[i].split('-----')[0].substr(0,3);
+                    obj[key] = arr[i].split('-----')[1];
+                }
+                d.value = JSON.stringify(obj).replace(/[,,]/g, ",\r\n");
+                // var Obj = objKeySort(JSON.parse(d.value));
+                // d.value = JSON.stringify(Obj);
+            }
         }
     </script>
 </body>
