@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        /* for in 用法 
+        如果 遍历的是数组 i为下标
+        如果 遍历的是对象 i为key值 */
+        /* var arr=[1,2,654,2,546,1,32211,23,412,2];
+        var obj={
+            name:'zhangb',
+            sex:'male',
+            age:25
+        }
+
+        each(arr);
+        each(obj);
+        function each(obj) {
+            for(var i in obj){
+                document.write(i+'     :     '+obj[i]);
+                document.write('<br>')
+                
+            }
+        } */
+        
+
+        // 深层拷贝
+        function deepClone(origin,target){
+            var target=target||{},
+            toStr=Object.prototype.toString,
+            arrStr="[object Array]";
+            for(var prop in origin){
+                if(origin.hasOwnProperty(prop)){
+                    if(origin[prop]!== null && typeof(origin[prop])=='object'){
+                        /* if(toStr.call(origin[prop])==arrStr){
+                            target[prop]=[];
+                        }else{
+                            target[prop]={};
+                        } */
+                        target[prop]=toStr.call(origin[prop])==arrStr?[]:{};
+                        deepClone(origin[prop],target[prop]);
+                    }else{
+                        target[prop]=origin[prop];
+                    }
+                }
+            }
+            return target;
+        }
+
+        // 三元运算符
+        var num=1>0?('10'>9?1:0):2;
+
+
+
+    </script>
+
+</body>
+
+</html>
