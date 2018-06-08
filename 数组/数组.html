@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组</title>
+
+    <style>
+        body img {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 封装type;
+        // 数组方法：
+        // 改变原数组
+        /* push,pop,unshift,shift,sort,reverse,splice */
+        var arr = [1, 5, 6, 48, 9, 5, 4, 55, 48];
+        Array.prototype.push = function () {
+            for (var i = 0; i < arguments.length; i++) {
+                this[this.length] = arguments[i];
+            }
+            return this.length;
+        };
+
+        Array.prototype.pop = function () {
+            var num = this[this.length - 1];
+            this.length--;
+            return num;
+        };
+
+        Array.prototype.shift = function () {
+            var num = this[0];
+            for (var i = 0; i < this.length; i++) {
+                this[i - 1] = this[i];
+            }
+            return num;
+        }
+
+        Array.prototype.unshift = function () {
+            var arr = [...arguments, ...this];
+            for (var i = 0; i < arr.length; i++) {
+                this[i] = arr[i];
+            }
+            return this.length
+        }
+
+
+        //数组切片
+        /* pos:起始位置
+        len:长度；
+        Arr:需要添加的数组； */
+        //arr.splice(pos,len,Arr);
+
+
+        // soft原理
+        // 1、必须为两个形参
+        // 2、看返回值1）当返回值为负数时，那么前面的数放在前面
+        //           2）为正数时，那么后面的数在前
+        //           3）为0，不动
+        arr.sort(function (a, b) {
+            // if (a > b) {
+            //     return 1;
+            // } else {
+            //     return -1;
+            // }
+            // 简写形式 a-b为升序，b-a为降序
+            // return a - b;
+            return b - a;
+        });
+
+        //使指定数组乱序
+        arr.sort(function (a, b) {
+            return Math.random() - 0.5;
+        })
+
+
+
+
+
+
+
+
+
+
+        // 不改变元素组
+        /* concat,join, split,toString,slice */
+
+    </script>
+</body>
+
+</html>

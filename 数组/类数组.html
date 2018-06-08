@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类数组</title>
+</head>
+
+<body>
+    <script>
+        //1、属性要为索引（数字），必须有length属性，最好加上push
+
+        var obj = {
+            "1": "a",
+            "2": "b",
+            "length": 2,
+            "push": Array.prototype.push
+        }
+        function type(target) {
+            var template = {
+                "[object Array]": "array",
+                "[object Object]": "object",
+                "[object Number]": "number - object",
+                "[object Boolean]": "boolean - object",
+                "[object String]": "string - object"
+            }
+            if (target === null) {
+                return null;
+            };
+            if (typeof (target) == 'object') {
+                var str = Object.prototype.toString.call(target);
+                return template[str];
+            } else {
+                return typeof (target);
+            }
+        }
+        var arr = [1, 1, 1, 1, 1, 2, 2, 2, 22, 1, 1, 1, 1, 5, 5, 5, 66, 6, 6, 6, 6];
+        // console.log(arr.push('ssssssss'))
+        Array.prototype.unique = function () {
+            var temp = {},
+                arr = [],
+                len = this.length;
+            for (var i = 0; i < len; i++) {
+                
+                if (!temp[this[i]]) {
+                    temp[this[i]] = 'abc';
+                    arr.push(this[i]);
+                }
+            }
+            return arr;
+        }
+
+        var Arr = arr.unique();
+
+        // console.log(Arr.soft(function(a,b){
+        //     return a-b;
+        // }))
+    </script>
+</body>
+
+</html>
