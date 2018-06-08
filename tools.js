@@ -121,12 +121,71 @@ function type(target) {
 /* 
 *insertAefore封装
  */
-Element.prototype.insertAefore=function(targetNode,afterNode){
-    var beforeNode=afterNode.nextElementSibling;
-    if(beforeNode){
-        this.insertBefore(targetNode,afterNode);
-    }else{
+Element.prototype.insertAefore = function (targetNode, afterNode) {
+    var beforeNode = afterNode.nextElementSibling;
+    if (beforeNode) {
+        this.insertBefore(targetNode, afterNode);
+    } else {
         this.appendChild(targetNode);
     }
-    
+
+}
+/**
+ * nextElementSibling兼容封装
+ */
+Element.prototype.nextElementSibling = function () {
+    if (this.nextElementSibling) {
+        return this.nextElementSibling;
+    } else {
+        if (this.nextSibling.nodeType === 1) {
+            return this.nextSibling;
+        } else {
+            var node = this.nextSibling;
+            while (node && this.node.nodeType !== 1) {
+                node = node.nextSibling;
+            }
+            return node;
+        }
+    }
+}
+
+/**
+ * firstElementChild
+ * 获取第一个子元素兼容封装
+ */
+Element.prototype.firstElementChild=function(){
+    if(element.firstElementChild){
+        return element.firstElementChild;
+    }else{
+        var node=element.firstChild;
+        while(node&&node.type!==1){
+            node=node.nextSibling;
+        }
+        return node;
+    }
+}
+/*
+ * pageOffset封装
+ * 活动屏幕滚动距离
+ */
+function pageOffset() {
+    if(window.pageXOffset){
+        return {
+            x:window.pageXOffset,
+            y:window.pageYOffset
+        }
+    }else{
+        return {
+            x:document.body.scrollLeft+document.documentElement.scrollLeft,
+            y:document.body.scrollHeight+document.documentElement.scrollHeight
+        }
+    }
+}
+
+/**
+ *
+ *
+ */
+function windowViewOffset(){
+
 }
