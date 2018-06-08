@@ -117,3 +117,16 @@ function type(target) {
         return ret;
     }
 }
+
+/* 
+*insertAefore封装
+ */
+Element.prototype.insertAefore=function(targetNode,afterNode){
+    var beforeNode=afterNode.nextElementSibling;
+    if(beforeNode){
+        this.insertBefore(targetNode,afterNode);
+    }else{
+        this.appendChild(targetNode);
+    }
+    
+}
