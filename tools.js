@@ -1,4 +1,5 @@
 /*
+*非空校验
 *isEmpty返回值为false说明字符串不为空，返回true字符串为空
 */
 function isEmpty(str) {
@@ -25,7 +26,6 @@ Array.prototype.max = function () {
 /**
  * 求数组的最小值
  */
-
 Array.prototype.max = function () {
     var min = this[0];
     for (var i = 0; i < this.length; i++) {
@@ -36,6 +36,7 @@ Array.prototype.max = function () {
 }
 
 /**
+ * 判断传入的值是不是NaN
  * @param {any} num 为任意值
  * @returns 布尔值
  */
@@ -49,6 +50,8 @@ function isNaN(num) {
     }
 }
 /**
+ * 求一个字符串的字节长度
+ * 
  * @param {any} str 字符串
  * @returns 
  */
@@ -63,6 +66,7 @@ function retBytes(str) {
 }
 /**
  * 打乱指定数组，返回一个新数组
+ * 
  * @param {any} arr //指定数组
  * @returns 
  */
