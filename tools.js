@@ -153,13 +153,13 @@ Element.prototype.nextElementSibling = function () {
  * firstElementChild
  * 获取第一个子元素兼容封装
  */
-Element.prototype.firstElementChild=function(){
-    if(element.firstElementChild){
+Element.prototype.firstElementChild = function () {
+    if (element.firstElementChild) {
         return element.firstElementChild;
-    }else{
-        var node=element.firstChild;
-        while(node&&node.type!==1){
-            node=node.nextSibling;
+    } else {
+        var node = element.firstChild;
+        while (node && node.type !== 1) {
+            node = node.nextSibling;
         }
         return node;
     }
@@ -169,23 +169,59 @@ Element.prototype.firstElementChild=function(){
  * 活动屏幕滚动距离
  */
 function pageOffset() {
-    if(window.pageXOffset){
+    if (window.pageXOffset) {
         return {
-            x:window.pageXOffset,
-            y:window.pageYOffset
+            x: window.pageXOffset,
+            y: window.pageYOffset
         }
-    }else{
+    } else {
         return {
-            x:document.body.scrollLeft+document.documentElement.scrollLeft,
-            y:document.body.scrollHeight+document.documentElement.scrollHeight
+            x: document.body.scrollLeft + document.documentElement.scrollLeft,
+            y: document.body.scrollHeight + document.documentElement.scrollHeight
         }
     }
 }
 
 /**
  *
- *
+ *获得浏览器可视区的宽高
  */
-function windowViewOffset(){
+function windowViewOffset() {
+    if (window.innerWidth) {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    } else {
+        if (document.compatMode == 'CSS1Compat') {
+            return {
+                width: document.body.clientWidth,
+                height: document.body.clientHeight
+            }
+        } else {
+            return {
 
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            }
+        }
+    }
+}
+/*
+ * 封装获得元素在dom中相对body的x，y的距离
+ */
+Element.prototype.elementPosition = function () {
+    if (this.offsetParent) {
+        var x = this.offsetLeft,
+            y = this.offsetTop;
+            return {
+                x:x+this.offsetParent.offsetLeft,
+                y:y+this.offsetParent.offsetTop
+            }
+    } else {
+        return {
+            x: this.offsetLeft,
+            y: this.offsetTop
+        }
+    }
 }
