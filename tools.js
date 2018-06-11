@@ -117,3 +117,83 @@ function type(target) {
         return ret;
     }
 }
+/**
+ *节点类型转换中文名
+ *
+ * @param {*} nodeType 
+ * @returns
+ */
+function nodeTypeCodeToName(nodeType) {
+    switch (nodeType) {
+        case 1:
+            return '元素节点'
+        case 2:
+            return '属性节点';
+        case 3:
+            return '文本节点';
+        case 8:
+            return '注释节点';
+        case 9:
+            return 'document';
+        case 11:
+            return 'DocumentFragment';
+    }
+}
+/**
+ *求元素的父级元素
+ *
+ * @param {*} el 对象
+ * @param {*} n 第几个父级元素
+ * @returns
+ */
+function retParent(el, n) {
+    while (el && n) {
+        var el = el.parentElement;
+        n--;
+    }
+    return el;
+}
+/*
+*在不用Element.children选择子元素的情况下，
+*封装选择子元素的方法
+*/
+Element.prototype.myChildren = function () {
+    var childNodes = this.childNodes,
+        len = childNodes.length,
+        arr = [];
+    for (var i = 0; i < len; i++) {
+        (function (i) {
+            if (childNodes[i].nodeType === 1) {
+                arr.push(childNodes[i]);
+            }
+        }(i));
+    }
+    return arr;
+}
+/**
+ *根据给定对象和一个整数n，n分正数、负数、0，
+ *获取该对象的兄弟元素
+ *
+ * @param {*} el 对象
+ * @param {*} n 整数
+ */
+function retSibling(el, n) {
+    while (el && n) {
+        if (n > 0) {
+            if (el.nextElementSibling) {
+                el = el.nextElementSibling;
+            } else {
+                for (el = el.nextSibling; el && el.nodeType != 1; el = el.nextSibling);
+            }
+            n--;
+        } else {
+            if (el.previousElementSibling) {
+                el = el.previousElementSibling;
+            } else {
+                for (el = el.prevSibling; el && el.nodeType != 1; el = el.prevSibling);
+            }
+            n++;
+        }
+    }
+    return el;
+}
