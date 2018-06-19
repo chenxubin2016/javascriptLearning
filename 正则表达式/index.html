@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则t</title>
+</head>
+
+<body>
+    <script>
+        /* 
+           \r\n 回车
+           \n换行
+           ？匹配没有或一次
+           *匹配0次或多次
+           +匹配至少1次或多次
+           ^匹配开始
+           $匹配结束
+           {a,b}匹配重复的范围,a必填,b可以不写，a代表最少重复的次数，b代表最多重复的次数  ab{2,}//b最少重复2次
+           请注意，你必须指定范围的下限（如："{0,2}"而不是"{,2}"）。还有，你可能注意到了，'*'，'+'和'?'相当于"{0,}"，"{1,}"和"{0,1}"。
+
+           !或操作符 "(b¦cd)ef"：表示"bef"或"cdef"；
+           .可以替代任何字符：
+           "a.[0-9]"：表示一个字符串有一个"a"后面跟着一个任意字符和一个数字；
+           "^.{3}$"：表示有任意三个字符的字符串（长度为3个字符）；
+
+           方括号表示某些字符允许在一个字符串中的某一特定位置出现：
+           "[ab]"：表示一个字符串有一个"a"或"b"（相当于"a¦b"）；
+           "[a-d]"：表示一个字符串包含小写的'a'到'd'中的一个（相当于"a¦b¦c¦d"或者"[abcd]"）；
+           "^[a-zA-Z]"：表示一个以字母开头的字符串；
+           "[0-9]%"：表示一个百分号前有一位的数字；
+           ",[a-zA-Z0-9]$"：表示一个字符串以一个逗号后面跟着一个字母或数字结束。
+           你也可以在方括号里用'^'表示不希望出现的字符，'^'应在方括号里的第一位。（如："%[^a-zA-Z]%"表示两个百分号中不应该出现字母）。
+           
+           \w 用于匹配字母，数字或下划线字符
+           /^[+]{0,1} (\d){1,3} [ ]? ([-]?((\d)|[ ]){1,12} )+$/
+
+           /^[\u4E00-\u9FA5]+$/
+           
+
+
+
+
+        */
+        // reg.test();
+        // str.match();
+        // var reg=/[f(?=ie)]/;
+        // var str="https://www.baidu.com/s?ie=utf-8&f=8";
+        // console.log(str.match(reg));
+
+
+        // var reg=/(\w)\1(\w)\2/g;
+        // var str='aabb';
+        // console.log(str.replace(reg,function () {
+        //     console.log(arguments)
+        //     return arguments[0].split('').reverse().join('');
+        // }))
+
+        // var reg=/-(\w)/g;
+        // var str='the-first-name';
+        // var _str=str.replace(reg,function($,$1){
+        //     return $1.toUpperCase();
+        // })
+        // console.log(_str)
+
+        // 字符串去重
+        // var reg=/(\w)\1*/g;
+        // var str="dddddddddddddaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbfffffffffffffff";
+        // console.log(str.replace(reg,"$1"));
+
+        // var str='100000000000000';
+        // // 要求科学记数
+        // var reg=/(?=(\B)(\d{3})+$)/g;
+
+        // console.log(str.replace(reg,'.'));
+
+        // 1、给一个连字符串例如：get-element-by-id转化成驼峰形式。
+
+        // var str='get-element-by-id',
+        // reg=/-(\w)/g;
+        // console.log(str.replace(reg,function($,$1){
+        //     return $1.toUpperCase();
+        // }))
+
+
+        // 2、匹配二进制数字
+        // var str="1010110000101";
+        // var reg=/[01]+$/g;
+        // console.log(reg.test(str))
+
+
+        // 3、非零的十进制数字 (有至少一位数字, 但是不能以0开头)
+
+        // var reg = /^[1-9][0-9]*$/g,
+        //     str = 1000005;
+
+        // console.log(reg.test(str))
+        // 4、匹配一年中的12个月
+
+        // var reg=/^(0?[1-9]|1[0-2])$/g,
+        // str='02';
+        // console.log(reg.test(str))
+
+        // 5、匹配qq号最长为13为
+
+        // 6、匹配常见的固定电话号码
+
+        // 7、匹配ip地址
+
+        // 8、匹配用尖括号括起来的以a开头的字符串
+
+        // 9、分割数字每三个以一个逗号划分
+    </script>
+
+</body>
+
+</html>
