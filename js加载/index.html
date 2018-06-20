@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../tools.js" defer></script>
+    <!-- defer只有ie支持 ，可以将代码写在标签内部-->
+    <script src="../tools.js" async></script>
+    <!-- async 异步加载， 只能加载外部js 非IE使用 加载完就执行-->
+
+    <!-- 按需加载 -->
+    <script>
+        asyncScript(['tools.js','bbb.js'],'../');
+        function asyncScript(names, path) {
+            for (var i = 0; i < names.length; i++) {
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.src = path + names[i];
+                document.body.appendChild(s);
+            }
+        }
+    </script>
+</body>
+
+</html>

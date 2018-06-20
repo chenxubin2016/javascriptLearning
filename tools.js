@@ -294,14 +294,32 @@ Element.prototype.elementPosition = function () {
     if (this.offsetParent) {
         var x = this.offsetLeft,
             y = this.offsetTop;
-            return {
-                x:x+this.offsetParent.offsetLeft,
-                y:y+this.offsetParent.offsetTop
-            }
+        return {
+            x: x + this.offsetParent.offsetLeft,
+            y: y + this.offsetParent.offsetTop
+        }
     } else {
         return {
             x: this.offsetLeft,
             y: this.offsetTop
         }
     }
+}
+
+
+/**
+ *
+ *
+ * @param {*} names 异步加载js名字
+ * @param {*} path  异步加载js文件路径
+ */
+function asyncScript(names, path) {
+    var script = '';
+    for (var i = 0; i < names.length; i++) {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = path + names[i];
+        script += s;
+    }
+    document.body.appendChild(script);
 }
