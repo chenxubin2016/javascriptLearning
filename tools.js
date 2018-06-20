@@ -314,12 +314,10 @@ Element.prototype.elementPosition = function () {
  * @param {*} path  异步加载js文件路径
  */
 function asyncScript(names, path) {
-    var script = '';
     for (var i = 0; i < names.length; i++) {
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.src = path + names[i];
-        script += s;
+        document.body.appendChild(s);
     }
-    document.body.appendChild(script);
 }
