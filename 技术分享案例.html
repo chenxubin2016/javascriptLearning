@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 作用域
+
+    // （1）
+    // function test(){
+    //   var a=1;
+    //   function demo(){
+    //     var b=3;
+    //     console.log(a);
+    //   }
+    //   demo();
+    //   console.log(b);
+    // }
+    // -------------------------------------------------------------------------------------------------
+    // 预编译
+    // 单线程，解释型语言
+    // 大致分三步
+
+    //1）语法分析
+
+    //2）预编译
+
+    // test();
+    // function test() {
+    //   console.log(11);
+    // }
+
+    // console.log(a);
+    // var a = 10;
+
+    // console.log(a)
+
+    // 函数声明 整体提升***** 
+    // 变量 声明提升***
+
+    // var a=10;//变量 声明提升
+    // ==》
+    // var a;
+    //   a=10;
+
+    // 例：
+    // console.log(a);
+    // function a(a){
+    //   var a=10;
+    //   function a(){}
+    // }
+    // var a=5;
+
+    // imply global 暗示全局变量：即任何变量，如果变量未经声明就赋值，次变量就为全局对象所有
+    // 一切声明的全局变量，全都是window的属性
+    // 如：
+    // a=0;
+    // ==》
+    // window.a=10;
+    // --->
+    // var a=10;
+
+
+    //window：//全局的域
+
+    // var a=b=10;
+    // console.log(a,b)
+
+    // function test(){
+    //   var a=b=20;
+    // };
+    // test();
+    // console.log(a)
+    // console.log(b)
+
+    // 例1：
+    // function fn(a) {
+    //   console.log(a)
+    //   var a = 123;
+    //   console.log(a)
+    //   function a() { }
+    //   console.log(a)
+    //   var b = function () { }
+    //   console.log(b)
+    //   function d() { }
+    // }
+    // fn(1);
+    // AO={};
+    // AO={
+    //   a:undefined,
+    //   b:undefined,
+    //   d:undefined
+    // };
+    // AO={
+    //   a:1,
+    //   b:undefined,
+    //   d:undefined
+    // }
+    // AO={
+    //   a:function a(){},
+    //   b:undefined,
+    //   d:function d(){}
+    // }
+
+    // 例2：
+    // function test(a, b) {
+    //   document.write(a);
+    //   c = 0;
+    //   var c;
+    //   a = 3;
+    //   b = 2;
+    //   document.write(b)
+    //   function b() { }
+    //   function d() { }
+    //   document.write(b)
+    // }
+    // test(1);
+
+
+    // AO={}
+    // AO={
+    //   a:undefined,
+    //   b:undefined,
+    //   c:undefined,
+    // }
+    // AO={
+    //   a:1,
+    //   b:undefined,
+    //   c:undefined,
+    // }
+    // AO={
+    //   a:1,
+    //   b:function b(){},
+    //   c:undefined,
+    //   d:function d(){}
+    // }
+    // AO={
+    //   a:1,
+    //   b:function b(){},
+    //   c:0,
+    //   d:function d(){}
+    // }
+    // 1,2,2
+
+    // function test(a, b) {
+    //   console.log(a)
+    //   console.log(b)
+    //   var b = 234;
+    //   console.log(b)
+
+    //   a = 123;
+    //   console.log(a)
+
+    //   function a() { };
+    //   var a;
+    //   b = 234;
+    //   var b = function () { }
+    //   console.log(a)
+    //   console.log(b)
+    // }
+    // test(1);
+    // function a(){},undefined,234,123,123,function(){}
+
+
+    // 预编译发生在函数执行前一刻
+    // 1、创建AO (Activation Object)（执行期上下午）
+    // AO{}
+    // 2、找形参和变量声明，将变量和形参名作为AO属性名，值为undefined
+
+    // 3、将实参值和形参值统一
+    // 4、在函数体里找 函数声明，值赋予函数体
+
+    // 全局预编译：生成GO对象 Global Object window===GO
+
+    // var a=123;
+    // function a(){}
+    // console.log(a); 
+    // console.log(window.a)
+
+    // function test(){
+    //   var a=b=123;
+    //   console.log(window.b)
+    //   console.log(window.a)
+    // }
+    // test();
+
+    // console.log(test)
+    // function test(test) {
+    //   console.log(test)
+    //   var test = 234;
+    //   console.log(test)
+    //   function test() { }
+    // }
+    // test(1);
+    // var test = 123;
+    // test函数体/AO下的test函数体/234
+
+    // var global=100;
+    // function fn() {
+    //   console.log(global);
+    // }
+    // fn();
+
+    // global = 100;
+    // function fn() {
+    //   console.log(global);
+    //   global = 200;
+    //   console.log(global);
+    //   var global = 300;
+    // }
+    // fn();
+    // var global;
+
+    // function test() {
+    //   console.log(b);
+    //   if(a){
+    //     var b=100;
+    //     console.log(b);
+    //   }
+    //   console.log(b);
+    //   c=234;
+    //   console.log(c);
+    // }
+    // var a;
+    // test();
+    // a=10;
+    // console.log(a);
+    // console.log(c);
+
+    /**1.*/
+    // function bar() {
+    //   return foo;
+    //   foo = 10;
+    //   function foo() { }
+    //   var foo = 11;
+    // }
+    // console.log(bar())
+
+    /**2.*/
+    function bar(){
+      foo=10;
+      function foo(){}
+      var foo=11;
+      return foo;
+    }
+    console.log(bar())
+    // -------------------------------------------------------------------------------------------------
+    //3）解释执行
+
+
+  </script>
+
+</body>
+
+</html>

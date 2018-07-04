@@ -36,6 +36,19 @@ Array.prototype.max = function () {
 }
 
 /**
+ *累加求和
+ *
+ * @returns
+ */
+function sum() {
+    var result = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        result += arguments[i];
+    }
+    return result;
+}
+
+/**
  * 判断传入的值是不是NaN
  * @param {any} num 为任意值
  * @returns 布尔值
@@ -333,50 +346,107 @@ function ajax(options) {
     options.dataType = options.dataType || "json";
     var params = formatParams(options.data);
     var xhr;
- 
+
     //创建 - 第一步
     if (window.XMLHttpRequest) {
-      xhr = new XMLHttpRequest();
-    } else if(window.ActiveObject) {         //IE6及以下
-      xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        xhr = new XMLHttpRequest();
+    } else if (window.ActiveObject) {         //IE6及以下
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
- 
+
     //连接 和 发送 - 第二步
     if (options.type == "GET") {
-      xhr.open("GET", options.url + "?" + params, true);
-      xhr.send(null);
+        xhr.open("GET", options.url + "?" + params, true);
+        xhr.send(null);
     } else if (options.type == "POST") {
-      xhr.open("POST", options.url, true);
-      //设置表单提交时的内容类型
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send(params);
+        xhr.open("POST", options.url, true);
+        //设置表单提交时的内容类型
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(params);
     }
 
-     //接收 - 第三步
+    //接收 - 第三步
     xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        var status = xhr.status;
-        if (status >= 200 && status < 300 || status == 304) {
-          options.success && options.success(xhr.responseText, xhr.responseXML);
-        } else {
-          options.error && options.error(status);
+        if (xhr.readyState == 4) {
+            var status = xhr.status;
+            if (status >= 200 && status < 300 || status == 304) {
+                options.success && options.success(xhr.responseText, xhr.responseXML);
+            } else {
+                options.error && options.error(status);
+            }
         }
-      }
     }
-  }
+}
 
-  //格式化参数
-  /**
-   *ajax数据格式化
-   *
-   * @param {*} data
-   * @returns
-   */
-  function formatParams(data) {
+//格式化参数
+/**
+ *ajax数据格式化
+ *
+ * @param {*} data
+ * @returns
+ */
+function formatParams(data) {
     var arr = [];
     for (var name in data) {
-      arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+        arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
     }
     arr.push(("v=" + Math.random()).replace("."));
     return arr.join("&");
-  }
+}
+
+/**
+ *数字转中文数字
+ *
+ * @param {*} target
+ * @returns
+ */
+function transfer(target) {
+    switch (target) {
+        case "0":
+            return '零';
+        case "1":
+            return '壹';
+        case "2":
+            return '贰';
+        case "3":
+            return '叁';
+        case "4":
+            return '肆';
+        case "5":
+            return '伍';
+        case "6":
+            return '陆';
+        case "7":
+            return '柒';
+        case "8":
+            return '捌';
+        case "9":
+            return '玖';
+    }
+}
+
+
+/**
+ *获取 斐波拉契数列 第n位的值
+ *
+ * @param {*} n
+ */
+function fb(n) {
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+    return fb(n - 1) + fb(n - 2);
+}
+
+/**
+ *获得一个数的 斐波拉契数列
+ *
+ * @param {*} n
+ */
+function fbs(n) {
+    var arr=[];
+    for(var i=1; i<=n; i++){
+        arr.push(fb(i));
+    }
+    return arr;
+}
