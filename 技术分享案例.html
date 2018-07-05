@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <script src="tools.js"></script>
   <script>
 
     // 作用域
@@ -244,17 +245,271 @@
     // console.log(bar())
 
     /**2.*/
-    function bar(){
-      foo=10;
-      function foo(){}
-      var foo=11;
-      return foo;
-    }
-    console.log(bar())
+    // function bar(){
+    //   foo=10;
+    //   function foo(){}
+    //   var foo=11;
+    //   return foo;
+    // }
+    // console.log(bar())
+
+    // console.log(a)
+    // var a=function(){}
+
+    // a = 100;
+    // function demo(e) {
+    //   function e() { };
+    //   arguments[0] = 2;
+    //   console.log(e);
+    //   if (a) {
+    //     var b = 123;
+    //     function c() { }
+    //   }
+    //   var c;
+    //   a = 10;
+    //   var a;
+    //   console.log(b);
+    //   f = 123;
+    //   console.log(c);
+    //   console.log(a);
+    // }
+    // var a;
+    // demo(1);
+    // console.log(a);
+    // console.log(f);
+
+    //2/undefined/undefined/10/100/123
+    // 目前浏览器不永许函数定义在if语句中，所以c函数预编译无法提升
+    // GO={
+    //   a:100,
+    //   demo:function demo(){},
+    //   f:123
+    // }
+
+    // AO={
+    //   e:function e(){},//2
+    //   b:undefined,//undefined
+    //   c:undefined(function c(){}),//undefined
+    //   a:undefined//10
+    // }
+    //100/123
     // -------------------------------------------------------------------------------------------------
     //3）解释执行
 
 
+    // 作用域精解
+    // function test(){}
+    // [[scope]]:每个JavaScript函数都是一个对象，对象中有些属性我们可以访问，
+    // 但是有些不可以，这些属性仅此而供JavaScript引擎存取，
+    // [[scope]]指的就是我们所说的作用域，其中存储了运行期上下文的集合
+
+    // 作用域链:[[scope]]中所存储的执行期上下文对象的集合，这个集合呈链式链接，我们把这种链式连接叫作用域链
+
+
+    // 执行期上下文：当函数执行时，会创建一个称为 执行期上下文 的内部对象。
+    // 一个执行期上下文定义了一个函数执行时的环境，函数每次执行时对应的执行期上下文都是独一无二的，
+    // 所以多次调用一个函数会导致创建多个执行期上下文，当函数执行完毕，它所产生的执行期上下文被销毁
+
+    // 查找变量：从作用域的顶端依次向下查找。
+
+    // 例如：
+    // function a(){
+    //   function b(){
+    //     var b=234;
+    //   }
+    //   var a=123;
+    //   b();
+    // }
+    // var glob=100;
+    // a();
+
+    // GO={
+    //   glob:100,
+    //   a:function a(){}
+    // }
+    // AO={
+    //   a:123,
+    //   b:function b(){}
+    // }
+    // AO={
+    //   b:234
+    // }
+
+    // 作用域链生成实例
+    // function a(){
+    //   function b(){
+    //     function c(){}
+    //     c();
+    //   }
+    //   b();
+    // }
+    // a();
+
+    // a:defined a.[[scope]] --->0:GO
+
+    // a:doing     a.[[scope]] --->0:aAO
+    //                             1:GO
+
+    // b:defined b.[[scope]] --->0:aAO
+    //                             1:GO
+
+    // b:dong      b.[[scope]] --->0:bAO
+    //                             1:aAO
+    //                             2:GO   
+
+    // c:defined c.[[scope]] --->0:bAO
+    //                             1:aAO
+    //                             2:GO  
+
+    // c:dong      c.[[scope]] --->0:bAO
+    //                             1:bAO
+    //                             2:aAO
+    //                             3:GO
+
+    // 闭包
+
+    // function a() {
+    //   function b() {
+    //     var bbb = 234;
+    //     console.log(aaa);
+    //   }
+    //   var aaa = 123;
+    //   return b;
+    // }
+    // var glob = 100;
+    // var demo = a();
+    // demo();
+
+
+    // 示例
+    // function a() {
+    //   var num = 100;
+    //   function b() {
+    //     num++;
+    //     console.log(num)
+    //   }
+    //   return b;
+    // }
+    // var demo = a();
+    // demo();
+    // demo();
+
+    // 累加器
+    // function add(){
+    //   var count=0;
+    //   function demo(){
+    //     count++;
+    //     console.log(count);
+    //   }
+    //   return demo;
+    // }
+    // var counter=add();
+    // counter();
+
+    // 缓存
+    // function test(){
+    //   var num=100;
+    //   function a(){
+    //     num++;
+    //     console.log(num)
+    //   };
+    //   function b(){
+    //     num--;
+    //     console.log(num)
+    //   };
+    //   return {
+    //     a:a,
+    //     b:b
+    //   }
+    // }
+    // var obj=test();
+    // obj.a();
+    // obj.b();  
+
+    // 闭包存储应用
+    // function eater(){
+    //   var food='';
+    //   var obj={
+    //     eat:function(){
+    //       console.log('i am eating '+ food)
+    //     },
+    //     push:function(myFood){
+    //         food=myFood;
+    //     }
+    //   }
+    //   return obj;
+    // }
+    // var eater1=eater();
+    // eater1.push('banana');
+    // eater1.eat();
+
+    // 立即执行函数
+
+    // 立即实现函数演变过程
+
+    // var test=function demo(){
+    //   var a=123;
+    //   var b=246;
+    //   console.log(a+b);
+    //   return a+b;
+    // }();
+    // console.log(test)
+
+
+    // 两种形式
+    // (function (){}());
+    // (function(){})();
+
+    // 只有表达式才能被执行符号执行
+    // function test(){
+    //   var a=12345;
+    //   console.log(1)
+    // };
+    // 能被执行符号执行的 表达式 会忽略到函数名
+    // var test=function (){
+
+    // }();
+
+    //     @陈旭斌 在function前面加！、+、 -甚至是逗号等到都可以起到函数定义后立即执行的效果，
+    //     而（）、！、+、-、=等运算符，都将函数声明转换成函数表达式，消除了javascript引擎识别函数表达式和函数声明的歧义，
+    //     告诉javascript引擎这是一个函数表达式，不是函数声明，可以在后面加括号，并立即执行函数的代码。
+    //      (function (a) {/**coding**/ }(123))
+    //     !function (a) {/**coding**/ }(123);
+    //     +function (a) {/**coding**/ }(123);
+    //     -function (a) {/**coding**/ }(123); 
+    //     =function(a) {/**coding**/ } (123);
+    //     加括号是最安全的做法，因为！、+、-等运算符还会和函数的返回值进行运算，
+    //     有时造成不必要的麻烦
+
+    // +function test(){
+    //   console.log('a')
+    // }();
+
+    // -function test(){
+    //   console.log('a')
+    // }();
+
+    // !function test(){
+    //   console.log('a')
+    // }();
+    // (function test(){})();
+
+
+    // function test(a,b,c,d){
+    //   console.log(a+b+c+d);
+    // }(1,2,3,4);
+
+      function test(){
+        var arr=[];
+        for(var i=0; i<10; i++){
+          arr[i]=function(){
+            console.log(i);
+          }
+        }
+        return arr;
+      }
+      var myArr=test();
+      
   </script>
 
 </body>
